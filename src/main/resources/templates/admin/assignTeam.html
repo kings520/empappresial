@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="~{layout/mainLayout :: layout (~{::body},'home')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+   <div class="col-md-12">
+       <!-- iCheck -->
+       <div class="box box-success">
+           <div class="box-header">
+               <h3 class="box-title">iCheck - Checkbox &amp; Radio Inputs</h3>
+           </div>
+           <div class="box-body">
+               <!-- Minimal style -->
+
+               <!-- checkbox -->
+               <form th:object="${task}" th:action="@{/admin/saveTeam}" method="post">
+                  <div class="form-group" th:each="g: ${goal}">
+                      <input type="hidden" name="goal" th:value="${g.id}">
+                      <label th:text="${'Goal Title: '+g.title}"></label>
+                  </div>
+                  <div class="form-group" th:each="team: ${users}">
+                      <!--<label>-->
+                          <!--<input type="checkbox" class="minimal" checked>-->
+                      <!--</label>-->
+                      <!--<label>-->
+                          <!--<input type="checkbox" class="minimal">-->
+                      <!--</label>-->
+                      <label>
+                          <input type="checkbox" name="users" th:value="${team.id}" class="icheckbox_minimal-blue">
+                          <span th:text="${team.surname+' '+team.firstName}"></span>
+                      </label>
+                  </div>
+                   <div class="form-group">
+                       <div class="row">
+                           <div class="col-sm-offset-5 col-sm-12">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                           </div>
+                       </div>
+                   </div>
+              </form>
+
+               <!--&lt;!&ndash; radio &ndash;&gt;-->
+               <!--<div class="form-group">-->
+                   <!--<label>-->
+                       <!--<input type="radio" name="r1" class="minimal" checked>-->
+                   <!--</label>-->
+                   <!--<label>-->
+                       <!--<input type="radio" name="r1" class="minimal">-->
+                   <!--</label>-->
+                   <!--<label>-->
+                       <!--<input type="radio" name="r1" class="minimal" disabled>-->
+                       <!--Minimal skin radio-->
+                   <!--</label>-->
+               <!--</div>-->
+
+               <!--&lt;!&ndash; Minimal red style &ndash;&gt;-->
+
+               <!--&lt;!&ndash; checkbox &ndash;&gt;-->
+               <!--<div class="form-group">-->
+                   <!--<label>-->
+                       <!--<input type="checkbox" class="minimal-red" checked>-->
+                   <!--</label>-->
+                   <!--<label>-->
+                       <!--<input type="checkbox" class="minimal-red">-->
+                   <!--</label>-->
+                   <!--<label>-->
+                       <!--<input type="checkbox" class="minimal-red" disabled>-->
+                       <!--Minimal red skin checkbox-->
+                   <!--</label>-->
+               <!--</div>-->
+
+               <!--&lt;!&ndash; radio &ndash;&gt;-->
+               <!--<div class="form-group">-->
+                   <!--<label>-->
+                       <!--<input type="radio" name="r2" class="minimal-red" checked>-->
+                   <!--</label>-->
+                   <!--<label>-->
+                       <!--<input type="radio" name="r2" class="minimal-red">-->
+                   <!--</label>-->
+                   <!--<label>-->
+                       <!--<input type="radio" name="r2" class="minimal-red" disabled>-->
+                       <!--Minimal red skin radio-->
+                   <!--</label>-->
+               <!--</div>-->
+
+               <!--&lt;!&ndash; Minimal red style &ndash;&gt;-->
+
+               <!--&lt;!&ndash; checkbox &ndash;&gt;-->
+               <!--<div class="form-group">-->
+                   <!--<label>-->
+                       <!--<input type="checkbox" class="flat-red" checked>-->
+                   <!--</label>-->
+                   <!--<label>-->
+                       <!--<input type="checkbox" class="flat-red">-->
+                   <!--</label>-->
+                   <!--<label>-->
+                       <!--<input type="checkbox" class="flat-red" disabled>-->
+                       <!--Flat green skin checkbox-->
+                   <!--</label>-->
+               <!--</div>-->
+
+               <!--&lt;!&ndash; radio &ndash;&gt;-->
+               <!--<div class="form-group">-->
+                   <!--<label>-->
+                       <!--<input type="radio" name="r3" class="flat-red" checked>-->
+                   <!--</label>-->
+                   <!--<label>-->
+                       <!--<input type="radio" name="r3" class="flat-red">-->
+                   <!--</label>-->
+                   <!--<label>-->
+                       <!--<input type="radio" name="r3" class="flat-red" disabled>-->
+                       <!--Flat green skin radio-->
+                   <!--</label>-->
+               <!--</div>-->
+           <!--</div>-->
+           <!--&lt;!&ndash; /.box-body &ndash;&gt;-->
+           <!--<div class="box-footer">-->
+               <!--Many more skins available. <a href="http://fronteed.com/iCheck/">Documentation</a>-->
+           <!--</div>-->
+       </div>
+   </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="~{layout/managerLayout :: layout (~{::body},'home')}" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header bg-success">
+                <h3 class="box-title">List of Task</h3>
+                <div class="box-tools">
+                    <div style="width: 400px;">
+
+                    </div>
+                </div>
+            </div><!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-striped margin-bottom-10">
+                    <thead>
+                    <tr>
+                        <th style="width:10px">SN</th>
+                        <th>Task </th>
+                        <th>Start Date</th>
+                        <th>Completion Date</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="au,iterStat : ${goals}">
+                        <td style="width: 10px"><span th:text="${iterStat.count}">1</span></td>
+                        <td th:text="${au.title}">Trident</td>
+                        <td th:text="${#dates.format(au.startDate,'dd MMMM yyyy')}">Internet Explorer 4.0</td>
+                        <td th:text="${#calendars.format(au.endDate,'dd MMMM yyyy')}">Win 95+</td>
+                        <td ><span class="label label-success" th:text="${au.status}">New</span></td>
+                        <td>
+                            <a th:href="@{'/manager/subTask/'+${au.id}}" title="List Task" class="btn btn-primary"><i class="fas fa-plus-square"></i></a>
+                            <a th:href="@{'/manager/addTaskForm/'+${au.id}}" title="Add New Task" class="btn btn-primary"><i class="fas fa-plus-square"></i></a>
+                            <a th:href="@{'/manager/viewTask/'+${au.id}}" title="Task Details" class="btn btn-primary"><i class="fas  fa-folder-open ml-2"></i></a>
+
+                            <a th:href="@{/manager/viewTeam/{id}(id=${au.id})}" title="Assign Team" class="btn btn-primary"><i class="fas fa-users ml-2"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div><!-- /.box-body -->
+
+        </div><!-- /.box -->
+    </div>
+</div>
+<!-- Modal -->
+<div class="remodal" data-remodal-id="remodal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+    <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+    <div class="remodal-content">
+        <h2 class="box-title">Remodal</h2>
+        <form th:object="${task}" th:action="@{/admin/addTask}" method="post">
+            <div class="form-group">
+                <!--<label for="title">Title</label>-->
+                <input type="text" class="form-control" id="title" placeholder="Enter Title" name="title"/>
+            </div>
+            <div class="form-group">
+                <!--<label for="description">Description</label>-->
+                <textarea id="description" rows="6" name="description" placeholder="Enter Description" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="startDate">Start Date</label>
+                        <input type="text" class="form-control"  id="startDate" placeholder="Enter Start Date" name="startDate"/>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="dueDate">End Date</label>
+                        <input type="text" class="form-control"  id="dueDate" placeholder="Enter End Date" name="dueDate"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <!--<div class="row">-->
+                    <!--<div class="col-md-6">-->
+                        <!--<label for="status">Status</label>-->
+                        <!--<select class="form-control"  id="status" name="status" >-->
+                            <!--<option>&#45;&#45;Select&#45;&#45;</option>-->
+                            <!--<option th:each="trole1:${T(com.employeeapp.model.Status).values()}"-->
+                                    <!--th:value="${trole1.name()}"-->
+                                    <!--th:text="${trole1.name()}">Priority</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="col-md-6">-->
+                        <!--<label for="priority">Priority</label>-->
+                        <!--<select class="form-control"  id="priority" name="priority" >-->
+                            <!--<option>&#45;&#45;Select&#45;&#45;</option>-->
+                            <!--<option th:each="trole:${T(com.employeeapp.model.Priority).values()}"-->
+                                    <!--th:value="${trole.name()}"-->
+                                    <!--th:text="${trole.name()}">Priority</option>-->
+                        <!--</select>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-offset-5 col-sm-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button data-remodal-action="cancel" class="btn cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+<!--end  Modal-->
+</body>
+</html>
